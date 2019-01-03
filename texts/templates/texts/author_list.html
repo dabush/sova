@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <section class="jumbotron">
+        <div class="row text-center">
+            <h1 class="col-4">Authors</h1>
+            <div class="col-8">
+                <p>All of them</p>
+            </div>
+        </div>
+    </section>
+    <section class="browse-authors">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        {% for author in object_list %}
+                        <p><a href="{{ author.get_absolute_url }}">{{ author.author_full_name }}</a></p>
+                        {% endfor %}
+                    </div>
+                    <div class="col">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

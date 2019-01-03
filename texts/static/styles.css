@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Source+Sans+Pro:400,700}|Cormorant+Garamond');
+
+ul.jumbotron-list {
+	list-style: none;
+}
+
+p {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1.text-title {
+	font-family: 'Abril Fatface', cursive;
+}
+
+h3.text-original-title {
+	font-family: 'Cormorant Garamond', serif;
+}
+
+h4.text-date {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+a {
+	color: #256bb7;
+}
+
+a:hover {
+	color: #122438;
+}
+
+a.site-name {
+	font-family: 'Abril Fatface', cursive;
+	font-size: 1.5em;
+}
+
+a.site-name span {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 0.7em;
+}
+
+section.text-jumbotron {
+	background: #e9ecef;
+	padding: 0;
+}
+
+section.text-jumbotron .col-8 {
+	padding: 4rem;
+}
+
+span.author-name a {
+	font-family: 'Abril Fatface', cursive;
+	font-size: 1.5rem;
+}
+
+div.publisher-name a {
+	font-family: 'Abril Fatface', cursive;
+	font-size: 1.5rem;	
+}

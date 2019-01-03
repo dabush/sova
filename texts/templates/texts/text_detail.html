@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <section class="text-jumbotron">
+        <div class="row">
+            <div class="col-8 text-left">
+                <h1 class="text-title">{{ object.text_title }}//</h1>
+                <h3 class="text-original-title">{{ object.text_original_title }}</h3>
+                <h4 class="text-date">{{ object.text_date }}</h4>
+                <p class="text-url"><a href="{{ object.text_url }}"><i class="fas fa-external-link-alt"></i></a></p>
+            </div>
+            <div class="col-4" style="background-image: url('{{ object.text_image.url }}');">
+                <img src="{{ object.text_image }}">
+            </div>
+        </div>
+    </section>
+    <div>
+        <div class="article-info row">
+            <div class="col publisher-name"><span>Published by: </span><a href="{{ object.text_owner.get_absolute_url }}">{{ object.text_owner }}</a></div>
+            <div class="col authors"><span>By: </span>
+                {% for author in object.text_author.all %}
+                {% if forloop.last %}
+                    <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.author_full_name }}</a></span>
+                    {% else %}
+                    <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.author_full_name }}, </a></span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+        <section class="browse-authors">
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    <div class="row text-container">
+                        <div class="col">
+                            <p>{{ object.text_original|safe }}</p>
+                        </div>
+                        <div class="col">
+                            <p>{{ object.text_translation|safe }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <section class="jumbotron">
+        <div class="row text-center">
+            <h1 class="col-4">{{ object.author_full_name }}</h1>
+            <div class="col-8">
+                <p>{{ object.author_bio|safe }}</p>
+                {{ object.author_image.url }}
+            </div>
+        </div>
+    </section>
+    <section class="browse-authors">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
