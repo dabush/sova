@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <section class="jumbotron">
+    <section class="jumbotron author-jumbotron">
         <div class="row text-center">
-            <h1 class="col-4">{{ object.author_full_name }}</h1>
-            <div class="col-8">
-                <p>{{ object.author_bio|safe }}</p>
-                {{ object.author_image.url }}
+            <h1 class="col-8">{{ object.author_full_name }}
+            <p>{{ object.author_bio|safe }}</p></h1>
+            <div class="col-4" style="background-image: url('{{ object.author_image.url }}');">
             </div>
         </div>
     </section>
