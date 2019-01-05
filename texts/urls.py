@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import HomePageView, TextView, OwnerView, AuthorView, TextListView, OwnerListView, AuthorListView
+from .views import HomePageView, TextView, OwnerView, AuthorView, TextListView, OwnerListView, AuthorListView, ThemeView
 
 app_name = 'texts'
 
@@ -12,4 +12,5 @@ urlpatterns = [
 	path('publishers/<slug:owner_slug>,<int:pk>/', OwnerView.as_view(), name='owner_view'),
 	path('authors/', AuthorListView.as_view(), name='author_list'),
 	path('authors/<slug:author_slug>,<int:pk>/', AuthorView.as_view(), name='author_view'),
+	path('topics/<slug:theme_slug>,<int:pk>/', ThemeView.as_view(), name='theme_view'),
 ]

@@ -15,30 +15,42 @@
     </section>
     <div>
         <div class="article-info row">
-            <div class="col publisher-name"><span>Published by: </span><a href="{{ object.text_owner.get_absolute_url }}">{{ object.text_owner }}</a></div>
-            <div class="col authors"><span>By: </span>
+            <div class="container">
+                <div class="col publisher-name"><span>Published by: </span><a href="{{ object.text_owner.get_absolute_url }}">{{ object.text_owner }}</a></div>
+                <div class="col authors"><span>By: </span>
                 {% for author in object.text_author.all %}
-                {% if forloop.last %}
-                    <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.author_full_name }}</a></span>
+                    {% if forloop.last %}
+                        <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.author_full_name }}</a></span>
                     {% else %}
-                    <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.author_full_name }}, </a></span>
+                        <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.author_full_name }}, </a></span>
                     {% endif %}
                 {% endfor %}
             </div>
+            <div class="col themes"><span>Topics: </span>
+                {% for theme in object.text_themes.all %}
+                    {% if forloop.last %}
+                        <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.theme_name }}</a></span>
+                    {% else %}
+                        <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.theme_name }}, </a></span>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
-        <section class="browse-authors">
-            <div class="album py-5 bg-light">
-                <div class="container">
-                    <div class="row text-container">
-                        <div class="col">
-                            <p>{{ object.text_original|safe }}</p>
-                        </div>
-                        <div class="col">
-                            <p>{{ object.text_translation|safe }}</p>
-                        </div>
-                    </div>
-                </div>
+    </div>
+</div>
+</div>
+<section class="browse-authors">
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row text-container">
+            <div class="col">
+                <p>{{ object.text_original|safe }}</p>
             </div>
-        </section>
-    {% endblock %}
+            <div class="col">
+                <p>{{ object.text_translation|safe }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}

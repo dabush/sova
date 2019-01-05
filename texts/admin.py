@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from .models import Owner, Author, Text
+from .models import Owner, Author, Text, Theme
 
 admin.site.register(Owner)
 admin.site.register(Author)
+admin.site.register(Theme)
 
 @admin.register(Text)
 class TextAdmin(admin.ModelAdmin):

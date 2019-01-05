@@ -1,52 +1,44 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <div class="container">
+    <div class="">
         <div class="row">
-            <div class="col">
-                Latest
+            <div class="latest col">
+                <h2>Latest</h2>
+                <div class="latest-wrapper">
+                    {% for text in latest_texts %}
+                        <h1><a href="{{ text.get_absolute_url }}">{{ text.text_title }}</a></h1>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="col-6">
-                Featured article
+            <div class="featured col-6">
+                <h2>Featured Articles</h2>
+                <div class="featured-wrapper">
+                    {% for text in featured_texts %}
+                        <h1 class="featured-title"><a href="{{ text.get_absolute_url }}">{{ text.text_title }}</a></h1>
+                        <p>{{ text.text_summary }}</p>
+                        <p>{{ text.text_translation|safe|truncatewords:100 }}</p>
+                        <div class="featured-text-image" style="background-image: url('{{ text.text_image.url }}');"></div>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="col">
-                Themes
+            <div class="topics col">
+                <h2>Topics</h2>
             </div>
         </div>
     </div>
-        <section class="jumbotron jumbotron-fluid libro-jumbotron home-jumbotron">
-            <div>
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="jumbotron-text">
-                            <h2 class="text-white">
-                            The best in Russian media.
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="img-fluid home-image" style = "background-image: url({% static "banner_image.jpg" %})" </div>
-                    </div>
+    <section>
+        <div class="album pt-3 bg-light">
+            <div class="container text-center">
+                <h2 class="mb-3">The Latest</h2>
+                <div class="scrolling-wrapper">
+                    {% for text in latest_texts %}
+                        <h1><a href="{{ text.get_absolute_url }}">{{ text.text_title }}</a></h1>
+                    {% endfor %}
                 </div>
+                <hr />
+                <h2 class="mb-3">Featured Books</h2>
             </div>
-            </section>
-            <section>
-                <div class="album pt-3 bg-light">
-                    <div class="container text-center">
-                        <h2 class="mb-3">The Latest</h2>
-                        <div class="scrolling-wrapper">
-                            {% for text in latest_texts %}
-                                <h1><a href="{{ text.get_absolute_url }}">{{ text.text_title }}</a></h1>
-                            {% endfor %}
-                        </div>
-                        <hr />
-                        <h2 class="mb-3">Featured Books</h2>
-                        <div class="scrolling-wrapper">
-                            {% for book in featuredbooks %}
-                                {% include "./_card1.html" with obj=book type="book" %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </section>
-        {% endblock %}
+        </div>
+    </section>
+{% endblock %}

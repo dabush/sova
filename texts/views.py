@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView, DetailView, ListView
 
-from .models import Owner, Author, Text
+from .models import Owner, Author, Text, Theme
 
 class HomePageView(TemplateView):
 
@@ -11,6 +11,7 @@ class HomePageView(TemplateView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['latest_texts'] = Text.objects.all()[:5]
+		context['featured_texts'] = Text.objects.filter(text_featured=True)
 		return context
 
 class TextView(DetailView):
@@ -58,6 +59,15 @@ class OwnerListView(ListView):
 class AuthorListView(ListView):
 
 	model = Author
+	paginate_by = 20
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		return context
+
+class ThemeView(DetailView):
+
+	model = Theme
 	paginate_by = 20
 
 	def get_context_data(self, **kwargs):
