@@ -7,7 +7,8 @@
                 <h2>Latest</h2>
                 <div class="latest-wrapper">
                     {% for text in latest_texts %}
-                        <h1><a href="{{ text.get_absolute_url }}">{{ text.text_title }}</a></h1>
+                        <h4 class="latest-title"><a href="{{ text.get_absolute_url }}"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;{{ text.text_title }}</a></h4>
+                        <p class="latest-summary">{{ text.text_summary }}</p>
                     {% endfor %}
                 </div>
             </div>
@@ -24,21 +25,12 @@
             </div>
             <div class="topics col">
                 <h2>Topics</h2>
+                <div class="topics-wrapper">
+                    {% for topic in topics %}
+                    <h4 class="topic-name"><a href="{{ topic.get_absolute_url }}">{{ topic.theme_name }}</a></h4>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-    <section>
-        <div class="album pt-3 bg-light">
-            <div class="container text-center">
-                <h2 class="mb-3">The Latest</h2>
-                <div class="scrolling-wrapper">
-                    {% for text in latest_texts %}
-                        <h1><a href="{{ text.get_absolute_url }}">{{ text.text_title }}</a></h1>
-                    {% endfor %}
-                </div>
-                <hr />
-                <h2 class="mb-3">Featured Books</h2>
-            </div>
-        </div>
-    </section>
 {% endblock %}

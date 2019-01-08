@@ -4,7 +4,7 @@ ul.jumbotron-list {
 	list-style: none;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, h4, p {
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -83,6 +83,15 @@ div.latest h2 {
 	padding: 1rem 2rem;
 }
 
+div.latest h4 {
+	padding: 1rem 2rem 0rem 1rem;
+	font-family: "Abril Fatface", cursive;
+}
+
+div.latest p {
+	padding: 0rem 1rem;
+}
+
 div.featured {
 	border-right: 1px solid rgba(180,180,180,0.35);
 }
@@ -103,4 +112,8 @@ div.featured-text-image {
 
 div.topics h2 {
 	padding: 1rem 2rem;	
+}
+
+div.topics h4.topic-name {
+	font-family: 'Abril Fatface', cursive;
 }

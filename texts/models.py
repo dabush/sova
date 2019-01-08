@@ -13,6 +13,8 @@ class Owner(models.Model):
 	owner_slug = models.SlugField(max_length=250)
 	owner_image = models.ImageField(null=True, blank=True, upload_to='owner_images')
 	owner_image_credit = models.CharField(max_length=50, blank=True)
+	owner_created = models.DateTimeField(auto_now_add=True)
+	owner_modified = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return self.owner_name
@@ -31,6 +33,8 @@ class Author(models.Model):
 	author_slug = models.SlugField(max_length=250)
 	author_image = models.ImageField(null=True, blank=True, upload_to='author_images')
 	author_image_credit = models.CharField(max_length=50, blank=True)
+	author_created = models.DateTimeField(auto_now_add=True)
+	author_modified = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return self.author_last_name
@@ -43,9 +47,15 @@ class Theme(models.Model):
 	theme_slug = models.SlugField(max_length=100)
 	theme_image = models.ImageField(null=True, blank=True, upload_to='theme_images')
 	theme_image_credit = models.CharField(max_length=50, blank=True)
+	theme_created = models.DateTimeField(auto_now_add=True)
+	theme_modified = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return self.theme_name
+
+
+	class Meta:
+		ordering = ('-theme_modified',)
 
 	def get_absolute_url(self):
 		return reverse('texts:theme_view', args=[self.theme_slug, self.id])
@@ -67,6 +77,7 @@ class Text(models.Model):
 	text_url = models.URLField(max_length=500)
 	text_featured = models.BooleanField()
 	text_publish = models.DateTimeField(default=timezone.now)
+	text_modified = models.DateTimeField(auto_now=True)
 
 	class Meta:
 		ordering = ('-text_publish',)

@@ -12,6 +12,7 @@ class HomePageView(TemplateView):
 		context = super().get_context_data(**kwargs)
 		context['latest_texts'] = Text.objects.all()[:5]
 		context['featured_texts'] = Text.objects.filter(text_featured=True)
+		context['topics'] = Theme.objects.all()[:10]
 		return context
 
 class TextView(DetailView):
