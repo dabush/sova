@@ -8,10 +8,10 @@ admin.site.register(Theme)
 
 @admin.register(Text)
 class TextAdmin(admin.ModelAdmin):
-	list_display = ('text_title', 'text_slug', 'text_owner', 'text_summary',)
-	list_filter = ('text_date',)
-	search_fields = ('text_title', 'text_summary', 'text_translation')
-	prepopulated_fields = {'text_slug': ('text_title',)}
-	raw_id_fields = ('text_owner',)
-	date_hierarchy = 'text_publish'
-	ordering = ('text_date',)
+	list_display = ('title', 'slug', 'owner', 'summary',)
+	list_filter = ('date',)
+	search_fields = ('title', 'summary', 'text_translation')
+	prepopulated_fields = {'slug': ('title',)}
+	raw_id_fields = ('owner',)
+	date_hierarchy = 'publish'
+	ordering = ('date',)

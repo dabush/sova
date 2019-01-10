@@ -7,8 +7,8 @@
                 <h2>Latest</h2>
                 <div class="latest-wrapper">
                     {% for text in latest_texts %}
-                        <h4 class="latest-title"><a href="{{ text.get_absolute_url }}"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;{{ text.text_title }}</a></h4>
-                        <p class="latest-summary">{{ text.text_summary }}</p>
+                        <h4 class="latest-title"><a href="{{ text.get_absolute_url }}"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;{{ text.title }}</a></h4>
+                        <p class="latest-summary">{{ text.summary }}</p>
                     {% endfor %}
                 </div>
             </div>
@@ -16,10 +16,10 @@
                 <h2>Featured Articles</h2>
                 <div class="featured-wrapper">
                     {% for text in featured_texts %}
-                        <h1 class="featured-title"><a href="{{ text.get_absolute_url }}">{{ text.text_title }}</a></h1>
-                        <p>{{ text.text_summary }}</p>
+                        <h1 class="featured-title"><a href="{{ text.get_absolute_url }}">{{ text.title }}</a></h1>
+                        <p>{{ text.summary }}</p>
                         <p>{{ text.text_translation|safe|truncatewords:100 }}</p>
-                        <div class="featured-text-image" style="background-image: url('{{ text.text_image.url }}');"></div>
+                        <div class="featured-text-image" style="background-image: url('{{ text.image.url }}');"></div>
                     {% endfor %}
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <h2>Topics</h2>
                 <div class="topics-wrapper">
                     {% for topic in topics %}
-                    <h4 class="topic-name"><a href="{{ topic.get_absolute_url }}">{{ topic.theme_name }}</a></h4>
+                    <h4 class="topic-name"><a href="{{ topic.get_absolute_url }}">{{ topic.name }}</a></h4>
                     {% endfor %}
                 </div>
             </div>

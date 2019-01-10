@@ -62,6 +62,11 @@ div.publisher-name a {
 	font-size: 1.5rem;	
 }
 
+div.col.country span {
+	font-family: 'Abril Fatface', cursive;
+	font-size: 1.5rem;
+}
+
 section.author-jumbotron {
 	padding: 0;
 }

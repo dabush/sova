@@ -11,7 +11,7 @@ class HomePageView(TemplateView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['latest_texts'] = Text.objects.all()[:5]
-		context['featured_texts'] = Text.objects.filter(text_featured=True)
+		context['featured_texts'] = Text.objects.filter(featured=True)
 		context['topics'] = Theme.objects.all()[:10]
 		return context
 
@@ -69,7 +69,6 @@ class AuthorListView(ListView):
 class ThemeView(DetailView):
 
 	model = Theme
-	paginate_by = 20
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)

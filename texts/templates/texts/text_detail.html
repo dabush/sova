@@ -4,34 +4,35 @@
     <section class="text-jumbotron">
         <div class="row">
             <div class="col-8 text-left">
-                <h1 class="text-title">{{ object.text_title }}//</h1>
-                <h3 class="text-original-title">{{ object.text_original_title }}</h3>
-                <h4 class="text-date">{{ object.text_date }}</h4>
-                <p class="text-url"><a href="{{ object.text_url }}"><i class="fas fa-external-link-alt"></i></a></p>
+                <h1 class="text-title">{{ object.title }}//</h1>
+                <h3 class="text-original-title">{{ object.original_title }}</h3>
+                <h4 class="text-date">{{ object.date }}</h4>
+                <p class="text-url"><a href="{{ object.url }}"><i class="fas fa-external-link-alt"></i></a></p>
             </div>
-            <div class="col-4" style="background-image: url('{{ object.text_image.url }}');">
+            <div class="col-4" style="background-image: url('{{ object.image.url }}');">
             </div>
         </div>
     </section>
     <div>
         <div class="article-info row">
             <div class="container">
-                <div class="col publisher-name"><span>Published by: </span><a href="{{ object.text_owner.get_absolute_url }}">{{ object.text_owner }}</a></div>
+                <div class="col country">Country: <span>{{ object.country.name }}</span></div>
+                <div class="col publisher-name"><span>Published by: </span><a href="{{ object.owner.get_absolute_url }}">{{ object.owner }}</a></div>
                 <div class="col authors"><span>By: </span>
-                {% for author in object.text_author.all %}
+                {% for author in object.author.all %}
                     {% if forloop.last %}
-                        <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.author_full_name }}</a></span>
+                        <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.full_name }}</a></span>
                     {% else %}
-                        <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.author_full_name }}, </a></span>
+                        <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.full_name }}, </a></span>
                     {% endif %}
                 {% endfor %}
             </div>
             <div class="col themes"><span>Topics: </span>
-                {% for theme in object.text_themes.all %}
+                {% for theme in object.themes.all %}
                     {% if forloop.last %}
-                        <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.theme_name }}</a></span>
+                        <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.name }}</a></span>
                     {% else %}
-                        <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.theme_name }}, </a></span>
+                        <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.name }}, </a></span>
                     {% endif %}
                 {% endfor %}
             </div>

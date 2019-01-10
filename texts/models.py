@@ -3,87 +3,98 @@ from django.utils import timezone
 from django.urls import reverse
 import datetime
 from tinymce import HTMLField
-from django_countries.fields import CountryField
 
 class Owner(models.Model):
-	owner_name = models.CharField(max_length=200)
-	owner_original_name = models.CharField(max_length=200, blank=True)
-	owner_description = models.CharField(max_length=500)
-	owner_url = models.URLField(max_length=200)
-	owner_slug = models.SlugField(max_length=250)
-	owner_image = models.ImageField(null=True, blank=True, upload_to='owner_images')
-	owner_image_credit = models.CharField(max_length=50, blank=True)
-	owner_created = models.DateTimeField(auto_now_add=True)
-	owner_modified = models.DateTimeField(auto_now=True)
+	name = models.CharField(max_length=200)
+	original_name = models.CharField(max_length=200, blank=True)
+	description = models.CharField(max_length=500)
+	url = models.URLField(max_length=200)
+	slug = models.SlugField(max_length=250)
+	image = models.ImageField(null=True, blank=True, upload_to='owner_images')
+	image_credit = models.CharField(max_length=50, blank=True)
+	created = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
-		return self.owner_name
+		return self.name
 
 	class Meta:
-		ordering = ('owner_name',)
+		ordering = ('name',)
 
 	def get_absolute_url(self):
-		return reverse('texts:owner_view', args=[self.owner_slug, self.id])
+		return reverse('texts:owner_view', args=[self.slug, self.id])
 
 class Author(models.Model):
-	author_last_name = models.CharField(max_length=200)
-	author_full_name = models.CharField(max_length=200)
-	author_original_full_name = models.CharField(max_length=200, blank=True)
-	author_bio = HTMLField()
-	author_slug = models.SlugField(max_length=250)
-	author_image = models.ImageField(null=True, blank=True, upload_to='author_images')
-	author_image_credit = models.CharField(max_length=50, blank=True)
-	author_created = models.DateTimeField(auto_now_add=True)
-	author_modified = models.DateTimeField(auto_now=True)
+	last_name = models.CharField(max_length=200)
+	full_name = models.CharField(max_length=200)
+	original_full_name = models.CharField(max_length=200, blank=True)
+	bio = HTMLField()
+	slug = models.SlugField(max_length=250)
+	image = models.ImageField(null=True, blank=True, upload_to='author_images')
+	image_credit = models.CharField(max_length=50, blank=True)
+	created = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
-		return self.author_last_name
+		return self.full_name
 
 	def get_absolute_url(self):
-		return reverse('texts:author_view', args=[self.author_slug, self.id])
+		return reverse('texts:author_view', args=[self.slug, self.id])
 
 class Theme(models.Model):
-	theme_name = models.CharField(max_length=100)
-	theme_slug = models.SlugField(max_length=100)
-	theme_image = models.ImageField(null=True, blank=True, upload_to='theme_images')
-	theme_image_credit = models.CharField(max_length=50, blank=True)
-	theme_created = models.DateTimeField(auto_now_add=True)
-	theme_modified = models.DateTimeField(auto_now=True)
+	name = models.CharField(max_length=100)
+	slug = models.SlugField(max_length=100)
+	image = models.ImageField(null=True, blank=True, upload_to='theme_images')
+	image_credit = models.CharField(max_length=50, blank=True)
+	created = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
-		return self.theme_name
+		return self.name
 
 
 	class Meta:
-		ordering = ('-theme_modified',)
+		ordering = ('-modified',)
 
 	def get_absolute_url(self):
-		return reverse('texts:theme_view', args=[self.theme_slug, self.id])
+		return reverse('texts:theme_view', args=[self.slug, self.id])
+
+class Country(models.Model):
+	name = models.CharField(max_length=50)
+	slug = models.SlugField(max_length=100)
+	image = models.ImageField(null=True, blank=True, upload_to='country_images')
+	image_credit = models.CharField(max_length=50, blank=True)
+	featured = models.BooleanField()
+
+	def __str__(self):
+		return self.name
+
+	class Meta:
+		ordering = ('name',)
 
 class Text(models.Model):
-	text_title = models.CharField(max_length=200)
-	text_original_title = models.CharField(max_length=200, blank=True)
-	text_date = models.DateField(default=datetime.date.today)
-	text_owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name='owner_texts')
-	text_author = models.ManyToManyField(Author)
-	text_country = CountryField()
-	text_themes = models.ManyToManyField(Theme)
-	text_summary = models.TextField()
-	text_image = models.ImageField(null=True, blank=True, upload_to='text_images')
-	text_image_credit = models.CharField(max_length=50, blank=True)
-	text_slug = models.SlugField(max_length=250)
+	title = models.CharField(max_length=200)
+	original_title = models.CharField(max_length=200, blank=True)
+	date = models.DateField(default=datetime.date.today)
+	owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name='owner_texts')
+	author = models.ManyToManyField(Author)
+	summary = models.TextField()
+	themes = models.ManyToManyField(Theme, related_name='themes')
+	image = models.ImageField(null=True, blank=True, upload_to='text_images')
+	image_credit = models.CharField(max_length=50, blank=True)
+	slug = models.SlugField(max_length=250)
 	text_original = HTMLField('Original')
 	text_translation = HTMLField('Translation')
-	text_url = models.URLField(max_length=500)
-	text_featured = models.BooleanField()
-	text_publish = models.DateTimeField(default=timezone.now)
-	text_modified = models.DateTimeField(auto_now=True)
+	url = models.URLField(max_length=500)
+	featured = models.BooleanField()
+	publish = models.DateTimeField(default=timezone.now)
+	modified = models.DateTimeField(auto_now=True)
 
 	class Meta:
-		ordering = ('-text_publish',)
+		ordering = ('-publish',)
 
 	def __str__(self):
-		return self.text_title
+		return self.title
 
 	def get_absolute_url(self):
-		return reverse('texts:text_view', args=[self.text_slug, self.id])
+		return reverse('texts:text_view', args=[self.slug, self.id])
