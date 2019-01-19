@@ -3,20 +3,21 @@
 {% block content %}
     <section class="jumbotron author-jumbotron">
         <div class="row text-center">
-            <h1 class="col-8">{{ object.author_full_name }}
-            <p>{{ object.author_bio|safe }}</p></h1>
-            <div class="col-4" style="background-image: url('{{ object.author_image.url }}');">
+            <div class="col-8">
+                <h1>{{ object.full_name }}</h1>
+                <h2>{{ object.original_full_name }}</h2>
+            <p>{{ object.bio|safe }}</p></div>
+            <div class="col-4" style="background-image: url('{{ object.image.url }}');">
             </div>
         </div>
     </section>
     <section class="browse-authors">
         <div class="album py-5 bg-light">
             <div class="container">
-                <div class="row">
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                        <p></p>
+                    <div class="">
+                    {% for text in author.text_set.all %}
+                        <p><a href="{{ text.get_absolute_url }}">{{ text.title }}</a></p>
+                    {% endfor %}
                     </div>
                 </div>
             </div>

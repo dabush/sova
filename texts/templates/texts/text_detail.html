@@ -16,42 +16,50 @@
     <div>
         <div class="article-info row">
             <div class="container">
-                <div class="col country">Country: <span>{{ object.country.name }}</span></div>
-                <div class="col publisher-name"><span>Published by: </span><a href="{{ object.owner.get_absolute_url }}">{{ object.owner }}</a></div>
-                <div class="col authors"><span>By: </span>
-                {% for author in object.author.all %}
+                <div class="col country">Country: 
+                {% for country in object.country.all %}
                     {% if forloop.last %}
-                        <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.full_name }}</a></span>
+                        <span class="country-name"><a href="{{ country.get_absolute_url }}">{{ country.name }}</a></span>
                     {% else %}
-                        <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.full_name }}, </a></span>
+                        <span class="country-name"><a href="{{ country.get_absolute_url }}">{{ country.name }}, </a></span>
                     {% endif %}
                 {% endfor %}
             </div>
-            <div class="col themes"><span>Topics: </span>
-                {% for theme in object.themes.all %}
-                    {% if forloop.last %}
-                        <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.name }}</a></span>
-                    {% else %}
-                        <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.name }}, </a></span>
-                    {% endif %}
-                {% endfor %}
-            </div>
+            <div class="col publisher-name"><span>Published by: </span><a href="{{ object.owner.get_absolute_url }}">{{ object.owner }}</a></div>
+            <div class="col authors"><span>By: </span>
+            {% for author in object.author.all %}
+                {% if forloop.last %}
+                    <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.full_name }}</a></span>
+                {% else %}
+                    <span class="author-name"><a href="{{ author.get_absolute_url }}">{{ author.full_name }}, </a></span>
+                {% endif %}
+            {% endfor %}
         </div>
+        <div class="col themes"><span>Topics: </span>
+        {% for theme in object.themes.all %}
+            {% if forloop.last %}
+                <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.name }}</a></span>
+            {% else %}
+                <span class="theme-name"><a href="{{ theme.get_absolute_url }}">{{ theme.name }}, </a></span>
+            {% endif %}
+        {% endfor %}
     </div>
+</div>
+</div>
 </div>
 </div>
 <section class="browse-authors">
 <div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row text-container">
-            <div class="col">
-                <p>{{ object.text_original|safe }}</p>
-            </div>
-            <div class="col">
-                <p>{{ object.text_translation|safe }}</p>
-            </div>
-        </div>
+<div class="container">
+<div class="row text-container">
+    <div class="col">
+        <p>{{ object.text_original|safe }}</p>
     </div>
+    <div class="col">
+        <p>{{ object.text_translation|safe }}</p>
+    </div>
+</div>
+</div>
 </div>
 </section>
 {% endblock %}

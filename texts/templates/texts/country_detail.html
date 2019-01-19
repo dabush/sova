@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <section class="jumbotron">
+    <section class="jumbotron author-jumbotron">
         <div class="row text-center">
-            <h1 class="col-4">Authors</h1>
-            <div class="col-8">
-                <p>All of them</p>
+            <div class="col-8"><h1>{{ object.name }}</h1></div>
+            <div class="col-4" style="background-image: url('{{ object.image.url }}');">
             </div>
         </div>
     </section>
@@ -14,12 +13,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        {% for author in object_list %}
-                        <p><a href="{{ author.get_absolute_url }}">{{ author.full_name }}</a> // <a href="{{ author.get_absolute_url }}"> {{ author.original_full_name }}</a></p>
+                        {% for text in object.text_set.all %}
+                        <p><a href="{{ text.get_absolute_url }}">{{ text.title }}</a></p>
                         {% endfor %}
-                    </div>
-                    <div class="col">
-                        <p></p>
                     </div>
                 </div>
             </div>

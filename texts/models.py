@@ -52,7 +52,6 @@ class Theme(models.Model):
 	def __str__(self):
 		return self.name
 
-
 	class Meta:
 		ordering = ('-modified',)
 
@@ -72,12 +71,16 @@ class Country(models.Model):
 	class Meta:
 		ordering = ('name',)
 
+	def get_absolute_url(self):
+		return reverse('texts:country_view', args=[self.slug, self.id])
+
 class Text(models.Model):
 	title = models.CharField(max_length=200)
 	original_title = models.CharField(max_length=200, blank=True)
 	date = models.DateField(default=datetime.date.today)
 	owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name='owner_texts')
 	author = models.ManyToManyField(Author)
+	country = models.ManyToManyField(Country)
 	summary = models.TextField()
 	themes = models.ManyToManyField(Theme, related_name='themes')
 	image = models.ImageField(null=True, blank=True, upload_to='text_images')

@@ -2,10 +2,14 @@
 {% load static %}
 {% block content %}
     <section class="jumbotron">
-        <div class="row text-center">
-            <h1 class="col-4">{{ object.owner_name }}</h1>
-            <div class="col-8">
-                <p>{{ object.owner_description }}</p>
+        <div class="row">
+            <div class="col-4 text-left">
+            <h1 class="serif">{{ object.name }}</h1>
+            <h2 class="serif1">{{ object.original_name }}</h2>
+            <p class="owner-url"><a href="{{ object.url }}"><i class="fas fa-external-link-alt"></i></a></p>
+        </div>
+            <div class="col-8 text-center">
+                <p>{{ object.description }}</p>
             </div>
         </div>
     </section>
@@ -13,14 +17,9 @@
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col">
                         {% for text in object.owner_texts.all %}
-                        <p><a href="{{ text.get_absolute_url }}">{{ text.text_title }}</a></p>
+                        <h3><a class="serif" href="{{ text.get_absolute_url }}">{{ text.title }}</a> // <a class="serif1" href="{{ text.get_absolute_url }}">{{ text.original_title }}</a></h3>
                         {% endfor %}
-                    </div>
-                    <div class="col">
-                        <p></p>
-                    </div>
                 </div>
             </div>
         </div>
