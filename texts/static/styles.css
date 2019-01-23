@@ -8,6 +8,10 @@
 	font-family: 'Cormorant Garamond', serif;
 }
 
+.sans-serif {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
 ul.jumbotron-list {
 	list-style: none;
 }
@@ -53,6 +57,10 @@ section.text-jumbotron {
 
 section.text-jumbotron .col-8 {
 	padding: 4rem;
+}
+
+section.author-jumbotron {
+	padding: 0;
 }
 
 span.author-name a {
